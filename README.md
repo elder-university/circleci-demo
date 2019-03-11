@@ -26,7 +26,7 @@ jobs:
       - checkout
       - run:
           name: Deploy to S3
-          command: ./aws.sh s3 sync --delete . "s3://hud-uni-advanced-web"
+          command: aws s3 sync --delete . "s3://hud-uni-advanced-web"
           
 workflows:
   version: 2

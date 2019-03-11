@@ -1,0 +1,20 @@
+version: 2
+jobs:
+  deploy:
+    docker:
+      - image: mesosphere/aws-cli
+
+    steps:
+      - checkout
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync --delete . "s3://hud-uni-advanced-web"
+          
+workflows:
+  version: 2
+  s3-deployment:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: master
